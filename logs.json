@@ -1,0 +1,33 @@
+{
+  "2025-09-26": {
+    "test": "test",
+    "problems": [
+      "Two Sum (#1)",
+      "Add Two Numbers (#2)"
+    ],
+    "systemDesign": [
+      "URL Shortener - Initial design"
+    ],
+    "notes": "Started the grind. Hash maps are powerful.",
+    "hoursSpent": 4
+  },
+  "2025-09-27": {
+    "problems": [
+      "Longest Substring Without Repeating Characters (#3)"
+    ],
+    "systemDesign": [],
+    "notes": "Sliding window technique clicked today.",
+    "hoursSpent": 5
+  },
+  "2025-09-28": {
+    "problems": [
+      "Valid Parentheses (#20)",
+      "Merge Two Sorted Lists (#21)"
+    ],
+    "systemDesign": [
+      "Rate Limiter - Algorithm research"
+    ],
+    "notes": "Stack problems make sense now. Linked lists still tricky.",
+    "hoursSpent": 6
+  }
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum - Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background-color: #f9f7f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #2c2c2c;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s;
+        }
+
+        .back-link:hover {
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        header {
+            border-bottom: 3px double #2c2c2c;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .problem-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border: 1px solid #2c2c2c;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: normal;
+            text-decoration: underline;
+            margin-bottom: 15px;
+        }
+
+        .problem-box {
+            border: 1px solid #2c2c2c;
+            padding: 20px;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
+        .example {
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px solid #2c2c2c;
+        }
+
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        pre {
+            background: #2c2c2c;
+            color: #f9f7f4;
+            padding: 20px;
+            overflow-x: auto;
+            border: 2px solid #2c2c2c;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        .approach {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .approach:last-child {
+            border-bottom: none;
+        }
+
+        .approach-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .complexity-box {
+            background: #fff;
+            border: 1px solid #2c2c2c;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .complexity-item {
+            margin: 5px 0;
+        }
+
+        .notes-box {
+            border: 2px solid #2c2c2c;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .notes-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .notes-box li {
+            margin: 8px 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Override Prism styles for vintage look */
+        pre[class*="language-"] {
+            background: #2c2c2c;
+            border: 2px solid #2c2c2c;
+        }
+
+        code[class*="language-"] {
+            color: #f9f7f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Solutions</a>
+
+        <header>
+            <div class="problem-meta">#1 | Arrays | Easy</div>
+            <h1>Two Sum</h1>
+            <div class="tags">
+                <span class="tag">Array</span>
+                <span class="tag">Hash Table</span>
+            </div>
+        </header>
+
+        <!-- Problem Statement -->
+        <section class="section">
+            <h2 class="section-title">Problem Statement</h2>
+            <div class="problem-box">
+                <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.</p>
+                <p style="margin-top: 10px;">You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+                <p style="margin-top: 10px;">You can return the answer in any order.</p>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Example 1:</div>
+                <strong>Input:</strong> nums = [2,7,11,15], target = 9<br>
+                <strong>Output:</strong> [0,1]<br>
+                <strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].
+            </div>
+
+            <div class="example">
+                <div class="example-title">Example 2:</div>
+                <strong>Input:</strong> nums = [3,2,4], target = 6<br>
+                <strong>Output:</strong> [1,2]
+            </div>
+
+            <div class="example">
+                <div class="example-title">Example 3:</div>
+                <strong>Input:</strong> nums = [3,3], target = 6<br>
+                <strong>Output:</strong> [0,1]
+            </div>
+        </section>
+
+        <!-- Solution Approaches -->
+        <section class="section">
+            <h2 class="section-title">Solution Approaches</h2>
+            
+            <div class="approach">
+                <div class="approach-title">Approach 1: Brute Force</div>
+                <p>Check every pair of numbers to see if they add up to the target using nested loops.</p>
+                <div class="complexity-box">
+                    <div class="complexity-item"><strong>Time Complexity:</strong> O(n²)</div>
+                    <div class="complexity-item"><strong>Space Complexity:</strong> O(1)</div>
+                </div>
+            </div>
+
+            <div class="approach">
+                <div class="approach-title">Approach 2: Hash Map (Optimal)</div>
+                <p>Use a hash map to store numbers we've seen and their indices. For each number, check if (target - current number) exists in the map. This allows us to solve the problem in a single pass.</p>
+                <div class="complexity-box">
+                    <div class="complexity-item"><strong>Time Complexity:</strong> O(n)</div>
+                    <div class="complexity-item"><strong>Space Complexity:</strong> O(n)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Solution -->
+        <section class="section">
+            <h2 class="section-title">Code Implementation</h2>
+            <pre><code class="language-python">def twoSum(nums, target):
+    # Dictionary to store number and its index
+    num_map = {}
+    
+    # Iterate through the array
+    for i, num in enumerate(nums):
+        # Calculate the complement
+        complement = target - num
+        
+        # Check if complement exists in our map
+        if complement in num_map:
+            return [num_map[complement], i]
+        
+        # Store current number and its index
+        num_map[num] = i
+    
+    # No solution found
+    return []</code></pre>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="section">
+            <h2 class="section-title">Key Takeaways</h2>
+            <div class="notes-box">
+                <ul>
+                    <li>Hash maps provide O(1) lookup time, making them ideal for finding complements</li>
+                    <li>We only need to iterate through the array once (one-pass solution)</li>
+                    <li>Trading space for time: we use O(n) extra space to achieve O(n) time</li>
+                    <li>The complement approach is a common pattern in array problems</li>
+                    <li>Always ask about constraints: Can there be duplicates? Negative numbers?</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            Solution documented on September 26, 2025
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

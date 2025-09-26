@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background-color: #f9f7f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px double #2c2c2c;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .topic-section {
+            margin-bottom: 50px;
+            border-left: 2px solid #2c2c2c;
+            padding-left: 20px;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .topic-title {
+            font-size: 1.3rem;
+            font-weight: normal;
+            text-decoration: underline;
+            text-decoration-style: double;
+        }
+
+        .notes-link {
+            font-size: 0.85rem;
+            color: #2c2c2c;
+            text-decoration: none;
+            border: 1px solid #2c2c2c;
+            padding: 2px 10px;
+            transition: all 0.2s;
+        }
+
+        .notes-link:hover {
+            background: #2c2c2c;
+            color: #f9f7f4;
+        }
+
+        .problems-list {
+            list-style: none;
+        }
+
+        .problem-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .problem-number {
+            font-size: 0.85rem;
+            color: #666;
+            min-width: 50px;
+        }
+
+        .problem-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s;
+        }
+
+        .problem-link:hover {
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        .difficulty {
+            font-size: 0.75rem;
+            margin-left: auto;
+            padding: 2px 8px;
+            border: 1px solid;
+        }
+
+        .difficulty.easy { 
+            border-color: #5a5a5a;
+            color: #5a5a5a;
+        }
+        
+        .difficulty.medium { 
+            border-color: #2c2c2c;
+            color: #2c2c2c;
+        }
+        
+        .difficulty.hard { 
+            border-color: #000;
+            color: #000;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE SCALING WALL</h1>
+            <p class="subtitle">project burnout - grinding until diminishing returns</p>
+        </header>
+
+        <!-- Quote Section -->
+        <div style="margin: 30px 0; padding: 20px; border: 2px solid #2c2c2c; background: #fff; text-align: center;">
+            <p id="quote" style="font-style: italic; font-size: 1rem; line-height: 1.6;"></p>
+        </div>
+
+        <!-- Daily Progress Calendar -->
+        <div style="margin: 30px 0; padding: 20px; border: 2px solid #2c2c2c; background: #fff;">
+            <h3 style="font-weight: normal; margin-bottom: 20px; text-align: center;">DAILY PROGRESS LOG</h3>
+            <div id="calendar"></div>
+        </div>
+
+        <!-- Modal for daily log -->
+        <div id="logModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: relative; max-width: 600px; margin: 50px auto; background: #f9f7f4; border: 3px solid #2c2c2c; padding: 30px;">
+                <button onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-family: 'Courier New', Courier, monospace;">×</button>
+                <div id="logContent"></div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #ccc;">
+            <a href="#leetcode" style="color: #2c2c2c; text-decoration: none; margin-right: 20px; border-bottom: 1px solid #2c2c2c;">LeetCode</a>
+            <a href="#system-design" style="color: #2c2c2c; text-decoration: none; border-bottom: 1px solid transparent;">System Design</a>
+        </nav>
+
+        <h2 id="leetcode" style="font-size: 1.5rem; font-weight: normal; margin-bottom: 30px; text-decoration: underline; text-decoration-style: double;">LeetCode Solutions</h2>
+
+        <!-- Arrays Topic -->
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Arrays</h2>
+                <a href="notes/arrays.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">#1</span>
+                    <a href="solutions/two-sum.html" class="problem-link">Two Sum</a>
+                    <span class="difficulty easy">Easy</span>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">#121</span>
+                    <a href="solutions/best-time-stock.html" class="problem-link">Best Time to Buy and Sell Stock</a>
+                    <span class="difficulty easy">Easy</span>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">#53</span>
+                    <a href="solutions/maximum-subarray.html" class="problem-link">Maximum Subarray</a>
+                    <span class="difficulty medium">Medium</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Binary Tree Topic -->
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Binary Tree</h2>
+                <a href="notes/binary-tree.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">#94</span>
+                    <a href="solutions/inorder-traversal.html" class="problem-link">Binary Tree Inorder Traversal</a>
+                    <span class="difficulty easy">Easy</span>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">#102</span>
+                    <a href="solutions/level-order.html" class="problem-link">Binary Tree Level Order Traversal</a>
+                    <span class="difficulty medium">Medium</span>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">#124</span>
+                    <a href="solutions/max-path-sum.html" class="problem-link">Binary Tree Maximum Path Sum</a>
+                    <span class="difficulty hard">Hard</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Binary Search Topic -->
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Binary Search</h2>
+                <a href="notes/binary-search.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">#704</span>
+                    <a href="solutions/binary-search.html" class="problem-link">Binary Search</a>
+                    <span class="difficulty easy">Easy</span>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">#33</span>
+                    <a href="solutions/search-rotated-array.html" class="problem-link">Search in Rotated Sorted Array</a>
+                    <span class="difficulty medium">Medium</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Add more topic sections as needed -->
+
+        <!-- System Design Section -->
+        <h2 id="system-design" style="font-size: 1.5rem; font-weight: normal; margin: 60px 0 30px 0; text-decoration: underline; text-decoration-style: double;">System Design</h2>
+
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Distributed Systems</h2>
+                <a href="notes/distributed-systems.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">01</span>
+                    <a href="system-design/url-shortener.html" class="problem-link">Design URL Shortener</a>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">02</span>
+                    <a href="system-design/rate-limiter.html" class="problem-link">Design Rate Limiter</a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Scalability</h2>
+                <a href="notes/scalability.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">01</span>
+                    <a href="system-design/notification-system.html" class="problem-link">Design Notification System</a>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">02</span>
+                    <a href="system-design/newsfeed.html" class="problem-link">Design News Feed</a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="topic-section">
+            <div class="topic-header">
+                <h2 class="topic-title">Data Intensive Applications</h2>
+                <a href="notes/data-intensive.html" class="notes-link">[notes]</a>
+            </div>
+            <ul class="problems-list">
+                <li class="problem-item">
+                    <span class="problem-number">01</span>
+                    <a href="system-design/search-autocomplete.html" class="problem-link">Design Search Autocomplete</a>
+                </li>
+                <li class="problem-item">
+                    <span class="problem-number">02</span>
+                    <a href="system-design/web-crawler.html" class="problem-link">Design Web Crawler</a>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            Last updated: September 2025
+        </footer>
+    </div>
+
+    <script>
+        // Array of your sayings/quotes
+        const quotes = [
+            "The only way out is through the algorithm.",
+            "Optimize your code, not your sleep schedule.",
+            "Every bug is a feature in disguise.",
+            "If it compiles, ship it. If it doesn't, ship it anyway.",
+            "The best time complexity is O(give up).",
+            "Stack overflow? More like stack my problems.",
+            "Debugging is like being a detective in a crime movie where you're also the murderer.",
+            "There are only 10 types of people: those who understand binary and those who don't.",
+            "Code never lies, comments sometimes do.",
+            "First, solve the problem. Then, write the code. Finally, question your life choices."
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function displayQuote() {
+            document.getElementById('quote').textContent = quotes[currentQuoteIndex];
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        }
+
+        // Display first quote immediately
+        displayQuote();
+
+        // Change quote every minute (60000 milliseconds)
+        setInterval(displayQuote, 60000);
+
+        // Daily logs - Will be loaded from logs.json
+        let dailyLogs = {};
+
+        // Load daily logs from JSON file
+        async function loadDailyLogs() {
+            try {
+                const response = await fetch('logs.json');
+                if (!response.ok) {
+                    throw new Error('logs.json not found');
+                }
+                dailyLogs = await response.json();
+                generateCalendar();
+            } catch (error) {
+                console.error('Error loading daily logs:', error);
+                console.log('Make sure to run a local server and have logs.json in the root directory');
+                // Generate calendar anyway with empty logs
+                generateCalendar();
+            }
+        }
+
+        // Calendar generation
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            
+            // Month header
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            let html = `<div style="text-align: center; margin-bottom: 15px; font-weight: bold;">${monthNames[currentMonth]} ${currentYear}</div>`;
+            
+            // Days header
+            html += `<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; margin-bottom: 10px;">`;
+            ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+                html += `<div style="font-size: 0.8rem; font-weight: bold;">${day}</div>`;
+            });
+            html += `</div>`;
+            
+            // Calendar grid
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            html += `<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;">`;
+            
+            // Empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                html += `<div></div>`;
+            }
+            
+            // Days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(currentYear, currentMonth, day);
+                const dateStr = date.toISOString().split('T')[0];
+                const hasLog = dailyLogs[dateStr];
+                const isToday = day === today.getDate();
+                
+                let style = 'padding: 10px; border: 1px solid #2c2c2c; text-align: center; cursor: pointer; transition: background 0.2s;';
+                
+                if (hasLog) {
+                    style += ' background: #2c2c2c; color: #f9f7f4; font-weight: bold;';
+                } else if (isToday) {
+                    style += ' border: 2px solid #2c2c2c;';
+                }
+                
+                html += `<div style="${style}" onclick="showLog('${dateStr}')" onmouseover="this.style.background='#666'; this.style.color='#f9f7f4';" onmouseout="this.style.background='${hasLog ? '#2c2c2c' : 'transparent'}'; this.style.color='${hasLog ? '#f9f7f4' : '#2c2c2c'}';">${day}</div>`;
+            }
+            
+            html += `</div>`;
+            calendar.innerHTML = html;
+        }
+
+        function showLog(dateStr) {
+            const log = dailyLogs[dateStr];
+            const modal = document.getElementById('logModal');
+            const content = document.getElementById('logContent');
+            
+            if (log) {
+                let html = `<h2 style="font-weight: normal; margin-bottom: 20px; border-bottom: 2px solid #2c2c2c; padding-bottom: 10px;">${dateStr}</h2>`;
+                html += `<div style="margin-bottom: 20px;"><strong>Hours Spent:</strong> ${log.hoursSpent}</div>`;
+                
+                if (log.problems.length > 0) {
+                    html += `<div style="margin-bottom: 20px;">`;
+                    html += `<strong>LeetCode Problems:</strong>`;
+                    html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
+                    log.problems.forEach(p => html += `<li>${p}</li>`);
+                    html += `</ul></div>`;
+                }
+                
+                if (log.systemDesign.length > 0) {
+                    html += `<div style="margin-bottom: 20px;">`;
+                    html += `<strong>System Design:</strong>`;
+                    html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
+                    log.systemDesign.forEach(s => html += `<li>${s}</li>`);
+                    html += `</ul></div>`;
+                }
+                
+                if (log.notes) {
+                    html += `<div style="border: 1px solid #2c2c2c; padding: 15px; background: #fff; margin-top: 20px;">`;
+                    html += `<strong>Notes:</strong><br>${log.notes}</div>`;
+                }
+                
+                content.innerHTML = html;
+            } else {
+                content.innerHTML = `<h2 style="font-weight: normal; margin-bottom: 20px;">${dateStr}</h2><p style="font-style: italic; color: #666;">No log entry for this day yet.</p>`;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('logModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('logModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Load logs and generate calendar on page load
+        loadDailyLogs();
+    </script>
