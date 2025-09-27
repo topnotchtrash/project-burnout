@@ -1,23 +1,14 @@
 {
-  "2025-09-26": {
-    "test": "test",
-    "problems": [
-      "Two Sum (#1)",
-      "Add Two Numbers (#2)"
-    ],
-    "systemDesign": [
-      "URL Shortener - Initial design"
-    ],
-    "notes": "Started the grind. Hash maps are powerful.",
-    "hoursSpent": 4
-  },
   "2025-09-27": {
     "problems": [
-      "Longest Substring Without Repeating Characters (#3)"
+      
     ],
     "systemDesign": [],
-    "notes": "Sliding window technique clicked today.",
-    "hoursSpent": 5
+    "notes": ["[1] went to class, started with binary trees at 11:06 am",
+              "[2] Plan on doing 1) pre-order, post-order, in-order Traversal. 2)Invert Binary Tree. 3) Maximum Depth Of a Binary Tree",
+              "[3] Finish the given coding assesment",
+              "[4] Write down important Distributed system concepts"],
+    "hoursSpent": 0
   },
   "2025-09-28": {
     "problems": [
@@ -27,7 +18,8 @@
     "systemDesign": [
       "Rate Limiter - Algorithm research"
     ],
-    "notes": "Stack problems make sense now. Linked lists still tricky.",
+    "notes": ["Stack problems make sense now. Linked lists still tricky."],
     "hoursSpent": 6
   }
+
 }

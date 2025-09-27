@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees - Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background-color: #f9f7f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #2c2c2c;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s;
+        }
+
+        .back-link:hover {
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        header {
+            border-bottom: 3px double #2c2c2c;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: normal;
+            text-decoration: underline;
+            margin-bottom: 15px;
+        }
+
+        .concept-box {
+            border: 1px solid #2c2c2c;
+            padding: 20px;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .pattern-box {
+            border-left: 3px solid #2c2c2c;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .pattern-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .code-snippet {
+            background: #2c2c2c;
+            color: #f9f7f4;
+            padding: 15px;
+            border: 2px solid #2c2c2c;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .tip-box {
+            background: #fff;
+            border: 2px solid #2c2c2c;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .tip-box strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #2c2c2c;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #2c2c2c;
+            color: #f9f7f4;
+            font-weight: normal;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Main</a>
+
+        <header>
+            <h1>BINARY TREES</h1>
+            <p class="subtitle">Core concepts, patterns, and techniques</p>
+        </header>
+
+        <!-- Key Concepts -->
+        <section class="section">
+            <h2 class="section-title">Key Concepts</h2>
+            
+            <div class="concept-box">
+                <div class="concept-title">What is a Binary Tree?</div>
+                <p>A Tree is a data structure used to simulate a hierarchical tree structure, Each Tree Node has a root value, and a list of references to 
+                    other nodes which are its childeren. From graph pov, we can call a tree as an acyclic graph which has N nodes and N-1 edges.
+                </p>
+                <p>
+                    A Binary Tree is most common kind of tree data structure, as the name suggest it can only have list of two children. So it has a root value
+                    and a reference to other nodes: Left Child and Right Child.
+                </p>
+            </div>
+
+            <div class="concept-box">
+                <div class="concept-title">Time Complexities</div>
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Time Complexity</th>
+                    </tr>
+                    <tr>
+                        <td>Pre-Order Traversal</td>
+                        <td>O(N)</td>
+                    </tr>
+                    <tr>
+                        <td>Post-Order Traversal</td>
+                        <td>O(n)</td>
+                    </tr>
+                    <tr>
+                        <td>In-Order Traversal</td>
+                        <td>O(n)</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Common Patterns -->
+        <section class="section">
+            <h2 class="section-title">Common Patterns</h2>
+
+            <div class="pattern-box">
+                <div class="pattern-name">Pre-order Traversal</div>
+                <p>Pre-order traversal- first go through left part of the tree and once we reach the end we go back and pick right side, we keep
+                    on doing this until we have visited all the nodes.
+                </p>
+                <p>This can be solved both recursively as well as iteratively(using stack)</p>
+                <div class="code-snippet">
+<pre>def two_pointers(arr):
+    left, right = 0, len(arr) - 1
+    while left < right:
+        # Process arr[left] and arr[right]
+        if condition:
+                                             left += 1
+        else:
+            right -= 1</pre>
+                </div>
+            </div>
+
+            <div class="pattern-box">
+                <div class="pattern-name">2. Sliding Window</div>
+                <p>Maintain a window of elements and slide it across the array.</p>
+                <p><strong>When to use:</strong> Subarray problems, consecutive elements, max/min in window</p>
+                <div class="code-snippet">
+<pre>def sliding_window(arr, k):
+    window_sum = sum(arr[:k])
+    max_sum = window_sum
+    
+    for i in range(k, len(arr)):
+        window_sum = window_sum - arr[i-k] + arr[i]
+        max_sum = max(max_sum, window_sum)</pre>
+                </div>
+            </div>
+
+            <div class="pattern-box">
+                <div class="pattern-name">3. Prefix Sum</div>
+                <p>Precompute cumulative sums for quick range queries.</p>
+                <p><strong>When to use:</strong> Range sum queries, subarray sum problems</p>
+                <div class="code-snippet">
+<pre>def prefix_sum(arr):
+    prefix = [0] * (len(arr) + 1)
+    for i in range(len(arr)):
+        prefix[i+1] = prefix[i] + arr[i]
+    
+    # Sum from index i to j: prefix[j+1] - prefix[i]</pre>
+                </div>
+            </div>
+
+            <div class="pattern-box">
+                <div class="pattern-name">4. Hash Map for Complements</div>
+                <p>Store elements in a hash map to find pairs or complements in O(1).</p>
+                <p><strong>When to use:</strong> Two sum variants, finding pairs</p>
+                <div class="code-snippet">
+<pre>def hash_complement(arr, target):
+    seen = {}
+    for i, num in enumerate(arr):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips & Tricks -->
+        <section class="section">
+            <h2 class="section-title">Tips & Tricks</h2>
+            
+            <div class="tip-box">
+                <strong>Edge Cases to Consider:</strong>
+                <ul>
+                    <li>Empty array []</li>
+                    <li>Single element [x]</li>
+                    <li>All elements are the same</li>
+                    <li>Negative numbers</li>
+                    <li>Array size is exactly the constraint limit</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <strong>Optimization Hints:</strong>
+                <ul>
+                    <li>If sorted → consider binary search or two pointers</li>
+                    <li>If looking for pairs → consider hash map</li>
+                    <li>If subarray → consider sliding window or prefix sum</li>
+                    <li>If in-place required → use swapping or two pointers</li>
+                    <li>O(n²) brute force? → Look for O(n log n) or O(n) solution</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Related Problems -->
+        <section class="section">
+            <h2 class="section-title">Related Problems</h2>
+            <ul>
+                <li><a href="../solutions/two-sum.html" style="color: #2c2c2c;">Two Sum (#1)</a></li>
+                <li><a href="../solutions/best-time-stock.html" style="color: #2c2c2c;">Best Time to Buy and Sell Stock (#121)</a></li>
+                <li><a href="../solutions/maximum-subarray.html" style="color: #2c2c2c;">Maximum Subarray (#53)</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            Last updated: September 26, 2025
+        </footer>
+    </div>
+</body>
+</html>
