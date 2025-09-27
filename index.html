@@ -419,45 +419,53 @@ function changeMonth(direction) {
 }
 
         function showLog(dateStr) {
-            const log = dailyLogs[dateStr];
-            const modal = document.getElementById('logModal');
-            const content = document.getElementById('logContent');
+    const log = dailyLogs[dateStr];
+    const modal = document.getElementById('logModal');
+    const content = document.getElementById('logContent');
+    
+    if (log) {
+        let html = `<h2 style="font-weight: normal; margin-bottom: 20px; border-bottom: 2px solid #2c2c2c; padding-bottom: 10px;">${dateStr}</h2>`;
+        html += `<div style="margin-bottom: 20px;"><strong>Hours Spent:</strong> ${log.hoursSpent}</div>`;
+        
+        if (log.problems.length > 0) {
+            html += `<div style="margin-bottom: 20px;">`;
+            html += `<strong>LeetCode Problems:</strong>`;
+            html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
+            log.problems.forEach(p => html += `<li>${p}</li>`);
+            html += `</ul></div>`;
+        }
+        
+        if (log.systemDesign.length > 0) {
+            html += `<div style="margin-bottom: 20px;">`;
+            html += `<strong>System Design:</strong>`;
+            html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
+            log.systemDesign.forEach(s => html += `<li>${s}</li>`);
+            html += `</ul></div>`;
+        }
+        
+        if (log.notes) {
+            html += `<div style="border: 1px solid #2c2c2c; padding: 15px; background: #fff; margin-top: 20px;">`;
+            html += `<strong>Notes:</strong>`;
             
-            if (log) {
-                let html = `<h2 style="font-weight: normal; margin-bottom: 20px; border-bottom: 2px solid #2c2c2c; padding-bottom: 10px;">${dateStr}</h2>`;
-                html += `<div style="margin-bottom: 20px;"><strong>Hours Spent:</strong> ${log.hoursSpent}</div>`;
-                
-                if (log.problems.length > 0) {
-                    html += `<div style="margin-bottom: 20px;">`;
-                    html += `<strong>LeetCode Problems:</strong>`;
-                    html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
-                    log.problems.forEach(p => html += `<li>${p}</li>`);
-                    html += `</ul></div>`;
-                }
-                
-                if (log.systemDesign.length > 0) {
-                    html += `<div style="margin-bottom: 20px;">`;
-                    html += `<strong>System Design:</strong>`;
-                    html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
-                    log.systemDesign.forEach(s => html += `<li>${s}</li>`);
-                    html += `</ul></div>`;
-                }
-                
-               if (log.notes && log.notes.length > 0) {
-               html += `<div style="border: 1px solid #2c2c2c; padding: 15px; background: #fff; margin-top: 20px;">`;
-               html += `<strong>Notes:</strong>`;
-               html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
-               log.notes.forEach(n => html += `<li>${n}</li>`);
-               html += `</ul></div>`;
-}
-                
-                content.innerHTML = html;
+            // Handle both array and string
+            if (Array.isArray(log.notes)) {
+                html += `<ul style="margin-left: 20px; margin-top: 10px;">`;
+                log.notes.forEach(n => html += `<li>${n}</li>`);
+                html += `</ul>`;
             } else {
-                content.innerHTML = `<h2 style="font-weight: normal; margin-bottom: 20px;">${dateStr}</h2><p style="font-style: italic; color: #666;">No log entry for this day yet.</p>`;
+                html += `<br>${log.notes}`;
             }
             
-            modal.style.display = 'block';
+            html += `</div>`;
         }
+        
+        content.innerHTML = html;
+    } else {
+        content.innerHTML = `<h2 style="font-weight: normal; margin-bottom: 20px;">${dateStr}</h2><p style="font-style: italic; color: #666;">No log entry for this day yet.</p>`;
+    }
+    
+    modal.style.display = 'block';
+}
 
         function closeModal() {
             document.getElementById('logModal').style.display = 'none';
